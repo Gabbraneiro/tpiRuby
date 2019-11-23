@@ -1,4 +1,4 @@
-class ItemReservationsController < ApplicationController
+class ItemReservationsController < PrivateController
   before_action :set_item_reservation, only: [:show, :update, :destroy]
 
   # GET /item_reservations

@@ -1,4 +1,4 @@
-class ReservationDetailsController < ApplicationController
+class ReservationDetailsController < PrivateController
   before_action :set_reservation_detail, only: [:show, :update, :destroy]
 
   # GET /reservation_details
@@ -47,5 +47,8 @@ class ReservationDetailsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def reservation_detail_params
       params.require(:reservation_detail).permit(:quantity)
+    end
+
+    def sell
     end
 end

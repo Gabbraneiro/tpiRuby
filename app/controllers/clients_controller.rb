@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class ClientsController < PrivateController
   before_action :set_client, only: [:show, :update, :destroy]
 
   # GET /clients

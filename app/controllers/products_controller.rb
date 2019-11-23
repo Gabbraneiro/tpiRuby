@@ -1,51 +1,50 @@
-class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :update, :destroy]
+class ProductsController < PrivateController
+  before_action :set_product, only: [:show]
+  before_action :check_q, only: [:index]
 
-  # GET /products
+  # GET /productos
   def index
-    @products = Product.all
-
+    @products = Product.send(params[:q])
     render json: @products
   end
 
-  # GET /products/1
+  # GET /productos/{codigo}/items
+  def items
+    items = @product.items.collect { |i| {estado: i.status, valor: @product.amount} }
+    render json: items
+  end
+
+  # GET /productos/{codigo}
   def show
     render json: @product
   end
 
-  # POST /products
-  def create
-    @product = Product.new(product_params)
-
-    if @product.save
-      render json: @product, status: :created, location: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /products/1
-  def update
-    if @product.update(product_params)
-      render json: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /products/1
-  def destroy
-    @product.destroy
+  # POST /productos/:codigo/items
+  def add_item
+    # if params[:_json].is_a? Integer && params[:_json] > 0
+    # @product = Product.find_by_code(params[:codigo])
+    #
+    #
+    # if @product.save
+    #   render json: @product, status: :created, location: @product
+    # else
+    #   render json: @product.errors, status: :unprocessable_entity
+    # end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find_by_code(params[:codigo])
     end
 
     # Only allow a trusted parameter "white list" through.
     def product_params
       params.require(:product).permit(:code, :description, :detail, :amount)
+    end
+
+    # En caso de que no se especifique un parametro "q" válido (['scarce', 'all','in_stock']) se setea "in_stock"
+    def check_q
+      params[:q] = 'in_stock' if !(['scarce', 'all','in_stock'].include? params[:q])
     end
 end

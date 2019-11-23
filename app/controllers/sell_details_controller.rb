@@ -1,4 +1,4 @@
-class SellDetailsController < ApplicationController
+class SellDetailsController < PrivateController
   before_action :set_sell_detail, only: [:show, :update, :destroy]
 
   # GET /sell_details

@@ -1,4 +1,4 @@
-class ContactPhonesController < ApplicationController
+class ContactPhonesController < PrivateController
   before_action :set_contact_phone, only: [:show, :update, :destroy]
 
   # GET /contact_phones

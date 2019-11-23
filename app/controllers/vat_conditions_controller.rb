@@ -1,4 +1,4 @@
-class VatConditionsController < ApplicationController
+class VatConditionsController < PrivateController
   before_action :set_vat_condition, only: [:show, :update, :destroy]
 
   # GET /vat_conditions
