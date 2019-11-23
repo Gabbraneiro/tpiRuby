@@ -32,8 +32,16 @@ if Product.all.empty?
       code: (0...3).map { rand(9) }.join + (0...6).map { (65 + rand(26)).chr }.join,
       description: "Producto #{i}",
       detail: "Descripcion ampliada del producto numero #{i}",
-      amount: rand(0.0..9999.0).truncate(2)
+      price: rand(0.0..9999.0).truncate(2)
     })
+  end
+end
+
+if Item.all.empty?
+  Product.all.each do | p |
+    rand(2..10).times do
+      Item.create( {status: rand(0..2), product: p} )
+    end
   end
 end
 

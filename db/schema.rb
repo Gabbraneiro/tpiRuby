@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_210952) do
+ActiveRecord::Schema.define(version: 2019_11_23_194256) do
 
   create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "cuit_cuil", null: false
@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(version: 2019_11_20_210952) do
     t.string "code", null: false
     t.string "description"
     t.text "detail"
-    t.float "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "price", null: false
   end
 
   create_table "reservation_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

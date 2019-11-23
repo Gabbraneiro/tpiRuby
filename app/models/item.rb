@@ -4,4 +4,8 @@ class Item < ApplicationRecord
   has_one :item_sell
   belongs_to :product
   validates :product, presence: true
+
+  def price
+    product.price
+  end
 end
