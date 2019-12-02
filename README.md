@@ -1,24 +1,11 @@
-# README
+# TPI - TTPS Ruby 2019 - UNLP
+  Trabajo práctico integrador de Taller de Tecnologias de Produccion de Software(Ruby) - Facultad de informática UNLP
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Requisitos
+  - Ruby 2.6.3 o posterior
+  - MySQL
+  - bundler
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Indicaciones para poner en funcionamiento la aplicación
+  1. Clonar el repositorio. `git clone 'https://github.com/Gabbraneiro/tpiRuby.git'`
