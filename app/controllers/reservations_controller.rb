@@ -2,7 +2,7 @@ class ReservationsController < PrivateController
   before_action :set_reservation, only: [:show, :vender, :destroy]
   before_action :check_sell, only: [:destroy]
   before_action :validate_params, only: [:create]
-  
+
   # GET /reservas
   def index
     @reservations = Reservation.not_sold
@@ -29,7 +29,7 @@ class ReservationsController < PrivateController
 
   # DELETE /reservas/:id
   def destroy
-    @reservation.destroy if !@reservation.sold?
+    # @reservation.destroy if !@reservation.sold?
   end
 
   private
