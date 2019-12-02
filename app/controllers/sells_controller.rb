@@ -1,10 +1,9 @@
 class SellsController < PrivateController
   before_action :set_sell, only: [:show, :update, :destroy]
 
-  # GET /sells
+  # GET /ventas
   def index
-    @sells = Sell.all
-
+    @sells = Sell.where(user: @current_user)
     render json: @sells
   end
 
@@ -44,8 +43,7 @@ class SellsController < PrivateController
       @sell = Sell.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def sell_params
-      params.require(:sell).permit(:date)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end

@@ -3,7 +3,7 @@ default: &default
   encoding: utf8
   username: <%= ENV['database_user'] %>
   password: <%= ENV['database_password'] %>
-  host: 192.168.0.162
+  host: <%= ENV['database_address'] %>
   port: 3306
 
 development:

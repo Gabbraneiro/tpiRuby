@@ -1,11 +1,17 @@
 class Item < ApplicationRecord
   enum status: [:disponible, :reservado, :vendido]
-  has_one :item_reservation
-  has_one :item_sell
-  belongs_to :product
+  belongs_to :product, foreign_key: "product_id"
   validates :product, presence: true
 
   def price
     product.price
+  end
+
+  def item_reservation
+
+  end
+
+  def item_sell
+    
   end
 end

@@ -44,7 +44,12 @@ class ProductsController < PrivateController
 
     # En caso de que el body no tenga un numero valido mayor a 0, se retorna 400.
     def check_quantity
-      errors = {cantidad: 'Debe enviar en el body una cantidad mayor a 0'}
-      respond_with_errors(errors, :bad_request) #if (!params[:_json].is_a? Integer || !params[:_json] > 0)
+      if (params[:_json].to_s.match(/^\d+$/).nil?)
+        errors = {cantidad: 'Debe enviar un número natural cuantitativo.'}
+        respond_with_errors(errors, :bad_request)
+      end
+      params[:_json] = params[:_json].to_i
+      # Luego se hace un times do sobre Integer params[:_json],
+      # que en caso de ser cero no se hará
     end
 end

@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 # Tipos de responsables
 if VatCondition.all.empty?
@@ -25,11 +18,12 @@ if VatCondition.all.empty?
       {code: 14, description: "Pequeño Contribuyente Eventual Social"}
   ]);
 end
+
 # Creacion de productos
 if Product.all.empty?
   (1..20).each do |i|
     Product.create({
-      code: (0...3).map { rand(9) }.join + (0...6).map { (65 + rand(26)).chr }.join,
+      code: (0...3).map { (65 + rand(26)).chr }.join + (0...6).map { rand(9) }.join,
       description: "Producto #{i}",
       detail: "Descripcion ampliada del producto numero #{i}",
       price: rand(0.0..9999.0).truncate(2)
@@ -37,20 +31,19 @@ if Product.all.empty?
   end
 end
 
+# Crea 10 items disponibles para el primer producto
 if Item.all.empty?
-  Product.all.each do | p |
-    rand(2..10).times do
-      Item.create( {status: rand(0..2), product: p} )
+    10.times do
+      Item.create( {status: 0, product: Product.all.first} )
     end
-  end
 end
 
 # Creacion de usuarios
 if User.all.empty?
   User.create([
     {
-      username: 'user_1',
-      password: 'mypassword'
+      username: 'jn.cuesta.luengo',
+      password: 'jncuesta'
     },
     {
       username: 'gabbraneiro',

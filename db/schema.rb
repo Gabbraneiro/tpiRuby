@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(version: 2019_11_23_194256) do
   create_table "reservation_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "quantity", null: false
     t.bigint "product_id", null: false
+    t.bigint "reservation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_reservation_details_on_product_id"
+    t.index ["reservation_id"], name: "index_reservation_details_on_reservation_id"
   end
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -88,9 +90,11 @@ ActiveRecord::Schema.define(version: 2019_11_23_194256) do
   create_table "sell_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "quantity", null: false
     t.bigint "product_id", null: false
+    t.bigint "sell_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_sell_details_on_product_id"
+    t.index ["sell_id"], name: "index_sell_details_on_sell_id"
   end
 
   create_table "sells", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
