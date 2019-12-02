@@ -9,3 +9,4 @@
 
 ### Indicaciones para poner en funcionamiento la aplicación
   1. Clonar el repositorio. `git clone 'https://github.com/Gabbraneiro/tpiRuby.git'`
+  2. 
