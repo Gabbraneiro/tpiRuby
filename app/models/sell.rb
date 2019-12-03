@@ -19,25 +19,21 @@ class Sell < ApplicationRecord
     params.store(:client, reservation.client)
     params.store(:reservation, reservation)
     sell = self.create(params)
-    begin
-       sell.add_sell_details_from_reservation(reservation)
-    rescue
-      sell.destroy
-    end
+    sell.add_sell_details_from_reservation(reservation)
     sell
   end
 
   def add_sell_details_from_reservation(reservation)
     reservation.reservation_details.each do |rd|
-      sell_detail = SellDetail.create({product: rd.product, quantity: rd.quantity})
+      sell_detail = SellDetail.create({sell: itself, product: rd.product, quantity: rd.quantity})
       ItemReservation.where(reservation: reservation).each do |ir|
         ir.item.vendido!
-        ItemSell.create({sell: self, item: ir.item, date: Time.now})
+        ItemSell.create({sell: itself, item: ir.item, date: Time.now})
       end
     end
   end
 
   def sell_details
-    SellDetail.where(sell:self)
+    SellDetail.where(sell: itself)
   end
 end

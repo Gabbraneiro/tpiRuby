@@ -1,6 +1,6 @@
 class ReservationsController < PrivateController
   before_action :set_reservation, only: [:show, :vender, :destroy]
-  before_action :check_sell, only: [:destroy]
+  before_action :check_sold, only: [:vender]
   before_action :validate_params, only: [:create]
 
   # GET /reservas
@@ -24,7 +24,7 @@ class ReservationsController < PrivateController
   # PUT /reservas/:id/vender
   def vender
     @reservation.update(sell: Sell.create_from_reservation(@reservation)) if !@reservation.sold?
-    render json: @reservation, status: :created
+    render json: @reservation.sell, status: :created
   end
 
   # DELETE /reservas/:id
@@ -109,7 +109,7 @@ class ReservationsController < PrivateController
     end
 
     # Ejecuta siempre despues del set_reservation
-    def check_sell
-      respond_with_errors({reservation: "No puede eliminar una reserva que ya fue vendida"}, :bad_request) if @reservation.sold?
+    def check_sold
+      respond_with_errors({reservation: "La reserva ya fue vendida"}, :bad_request) if @reservation.sold?
     end
 end
