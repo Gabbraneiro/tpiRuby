@@ -2,12 +2,12 @@ class AuthenticationController < PrivateController
  skip_before_action :authenticate_request
 
  def authenticate
-   command = AuthenticateUser.call(params[:u], params[:p])
-
+   r = request_params
+   command = AuthenticateUser.call(r[:u], r[:p])
    if command.success?
-     render json: { auth_token: command.result }
+     json_response({ auth_token: command.result })
    else
-     render json: { error: command.errors }, status: :unauthorized
+     json_response({ error: command.errors }, :unauthorized)
    end
  end
 end

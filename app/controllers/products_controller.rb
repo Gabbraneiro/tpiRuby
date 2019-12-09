@@ -6,35 +6,29 @@ class ProductsController < PrivateController
   # GET /productos
   def index
     @products = Product.send(params[:q])
-    render json: @products
+    json_response(@products)
   end
 
   # GET /productos/{codigo}/items
   def items
-    render json: @product.items
+    json_response(@product.items)
   end
 
   # GET /productos/{codigo}
   def show
-    render json: @product
+    json_response(@product)
   end
 
   # POST /productos/:codigo/items
   def add_item
-    params[:_json].times { Item.create({product: @product, status: :disponible})}
-    render json: @product.items, status: :created
+    request_params[:quantity].to_i.times { Item.create({product: @product, status: :disponible})}
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find_by_code(params[:codigo])
-      respond_with_errors({codigo: 'Código de producto no encontrado'}, :not_found) if @product.nil?
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def product_params
-      params.require(:product).permit(:code, :description, :detail, :price)
+      json_response(nil, :not_found, errors = {codigo: 'Código de producto no encontrado'}) if @product.nil?
     end
 
     # En caso de que no se especifique un parametro "q" válido (['scarce', 'all','in_stock']) se setea "in_stock"
@@ -44,12 +38,10 @@ class ProductsController < PrivateController
 
     # En caso de que el body no tenga un numero valido mayor a 0, se retorna 400.
     def check_quantity
-      if (params[:_json].to_s.match(/^\d+$/).nil?)
-        errors = {cantidad: 'Debe enviar un número natural cuantitativo.'}
-        respond_with_errors(errors, :bad_request)
+      if (request_params[:quantity].to_s.match(/^\d+$/).nil?)
+        json_response(nil, :bad_request, {cantidad: 'Debe enviar un número natural cuantitativo.'})
       end
-      params[:_json] = params[:_json].to_i
-      # Luego se hace un times do sobre Integer params[:_json],
+      # Luego se hace un times do sobre Integer request_params[:quantity],
       # que en caso de ser cero no se hará
     end
 end

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   ## Servicios que no requieren token de autenticación
 
   post 'sesiones', to: 'authentication#authenticate' # Hecho
-  post 'usuarios', to: 'users#create'
+
+  post 'usuarios', to: 'users#create' # Hecho
 
   ## Servicios que requieren token de autenticación
 
@@ -30,6 +31,5 @@ Rails.application.routes.draw do
   get 'ventas/:id', to: 'sells#show'
 
   post 'ventas', to: 'sells#create'
-
 
 end

@@ -6,25 +6,25 @@ class ReservationsController < PrivateController
   # GET /reservas
   def index
     @reservations = Reservation.not_sold
-    render json: @reservations
+    json_response(@reservations)
   end
 
   # GET /reservas/{id}
   def show
-    render json: @reservation
+    json_response(@reservation)
   end
 
   # POST /reservas
   def create
-    @reservation = Reservation.create(reservation_params.except(:reservation_details))
+    @reservation = Reservation.create(request_params.except(:reservation_details))
     @reservation.add_reservation_details(reservation_details_params)
-    render json: @reservation, status: :created
+    json_response(@reservation, :created)
   end
 
   # PUT /reservas/:id/vender
   def vender
     @reservation.update(sell: Sell.create_from_reservation(@reservation)) if !@reservation.sold?
-    render json: @reservation.sell, status: :created
+    json_response(@reservation.sell, :created)
   end
 
   # DELETE /reservas/:id
@@ -38,17 +38,12 @@ class ReservationsController < PrivateController
       begin
         @reservation = Reservation.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        respond_with_errors({codigo: 'Reserva no encontrada'}, :not_found)
+        json_response(nil, :not_found, {codigo: 'Reserva no encontrada'})
       end
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def reservation_params
-      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
-    end
-
     def reservation_details_params
-      reservation_params[:reservation_details].collect do |rd|
+      request_params[:reservation_details].collect do |rd|
         {product: Product.find(rd[:product_id]), quantity: rd[:quantity]}
       end
     end
@@ -59,12 +54,12 @@ class ReservationsController < PrivateController
       validate_user(errors)
       validate_client(errors)
       validate_date(errors)
-      respond_with_errors(errors, :bad_request) if !errors.empty?
+      json_response(nil, :bad_request, errors) unless errors.empty?
       return
     end
 
     def validate_products(errors)
-      reservation_params[:reservation_details].collect do |rd|
+      request_params[:reservation_details].collect do |rd|
         messages = []
         begin
           validate_availability(Product.find(rd[:product_id]), rd[:quantity])
@@ -80,23 +75,23 @@ class ReservationsController < PrivateController
 
     def validate_user(errors)
       begin
-        User.find(reservation_params[:user_id])
+        User.find(request_params[:user_id])
       rescue ActiveRecord::RecordNotFound
-        errors[:user_id] = "No existe usuario con id #{reservation_params[:user_id]}"
+        errors[:user_id] = "No existe usuario con id #{request_params[:user_id]}"
       end
     end
 
     def validate_client(errors)
       begin
-        Client.find(reservation_params[:client_id])
+        Client.find(request_params[:client_id])
       rescue ActiveRecord::RecordNotFound
-        errors[:client_id] = "No existe cliente con id #{reservation_params[:client_id]}"
+        errors[:client_id] = "No existe cliente con id #{request_params[:client_id]}"
       end
     end
 
     def validate_date(errors)
       begin
-        f = reservation_params[:date].split('-')
+        f = request_params[:date].split('-')
         Time.new(f[0], f[1], f[2])
       rescue
         errors[:date] = "Fecha inválida. Formato permitido: Y-m-d"
@@ -110,6 +105,6 @@ class ReservationsController < PrivateController
 
     # Ejecuta siempre despues del set_reservation
     def check_sold
-      respond_with_errors({reservation: "La reserva ya fue vendida"}, :bad_request) if @reservation.sold?
+      json_response(nil, :bad_request, {reservation: "La reserva ya fue vendida"}) if @reservation.sold?
     end
 end

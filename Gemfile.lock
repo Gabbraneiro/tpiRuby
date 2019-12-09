@@ -165,18 +165,18 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
+  active_model_serializers (~> 0.10.10)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
-  figaro
+  figaro (~> 1.1.1)
   jbuilder (~> 2.7)
-  jwt
+  jwt (~> 2.2.1)
   listen (>= 3.0.5, < 3.2)
-  mysql2
+  mysql2 (~> 0.5.2)
   puma (~> 4.1)
   rails (~> 6.0.1)
-  simple_command
+  simple_command (~> 0.1.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)

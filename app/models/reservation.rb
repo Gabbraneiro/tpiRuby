@@ -34,13 +34,13 @@ class Reservation < ApplicationRecord
     ReservationDetail.where(reservation:self)
   end
 
-  def destroy
-    ItemReservation.where(reservation: itself).each do |ir|
-      ir.item.disponible!
-      # ir.destroy
-    end
-    # ReservationDetail.where(reservation: itself).destroy_all
-    super.destroy
-  end
+  # def destroy
+  #   ItemReservation.where(reservation: itself).each do |ir|
+  #     ir.item.disponible!
+  #     # ir.destroy
+  #   end
+  #   # ReservationDetail.where(reservation: itself).destroy_all
+  #   super.destroy
+  # end
 
 end
