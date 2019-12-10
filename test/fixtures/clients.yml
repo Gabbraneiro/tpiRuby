@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  cuit_cuil: MyString
-  email: MyString
-  denomination: MyString
+  cuit_cuil: "23384547894"
+  email: "testandoRuby@yahoo.com.ar"
+  denomination: "La Anonima"
 
 two:
-  cuit_cuil: MyString
-  email: MyString
-  denomination: MyString
+  cuit_cuil: "20387455691"
+  email: "jaime_01@gmail.com"
+  denomination: "Jaime Camacho"

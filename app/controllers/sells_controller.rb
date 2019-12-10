@@ -1,10 +1,14 @@
 class SellsController < PrivateController
   before_action :set_sell, only: [:show, :update, :destroy]
+  before_action :validate_params, only: [:create]
+
+  include Marketable
+
 
   # GET /ventas
   def index
     @sells = Sell.where(user: @current_user)
-    render json: @sells
+    json_response(@sell)
   end
 
   # GET /sells/1
@@ -14,36 +18,22 @@ class SellsController < PrivateController
 
   # POST /sells
   def create
-    @sell = Sell.new(sell_params)
-
-    if @sell.save
-      render json: @sell, status: :created, location: @sell
-    else
-      render json: @sell.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /sells/1
-  def update
-    if @sell.update(sell_params)
-      render json: @sell
-    else
-      render json: @sell.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /sells/1
-  def destroy
-    @sell.destroy
+    @sell = Sell.create(request_params.except(:sell_details))
+    @sell.add_sell_details(marketable_details_params(request_params, 'sell'))
+    json_response(@sell, :created)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sell
-      @sell = Sell.find(params[:id])
+      @sell = Sell.find_by({user:@current_user, id: params[:id]})
+      json_response(nil, :not_found, {codigo: 'Venta no encontrada'}) if @sell.nil?
     end
 
-    def sell_params
-      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    def validate_params
+      errors = {}
+      validate_marketable_params(request_params, 'sell', errors)
+      json_response(nil, :bad_request, errors) unless errors.empty?
+      return
     end
 end

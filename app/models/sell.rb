@@ -36,4 +36,15 @@ class Sell < ApplicationRecord
   def sell_details
     SellDetail.where(sell: itself)
   end
+
+  def add_sell_details(sell_details_params)
+    sell_details_params.each do |sd|
+      sell_detail = sell_details.create(sd)
+      sell_detail.product.items_available.first(sd[:quantity]).each do |i|
+        i.vendido!
+        ItemSell.create({sell: self, item: i, date: Time.now})
+      end
+    end
+  end
+
 end
