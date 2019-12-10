@@ -24,12 +24,12 @@ Rails.application.routes.draw do
 
   put 'reservas/:id/vender', to: 'reservations#vender' # Hecho
 
-  delete 'reservas/:id', to: 'reservations#destroy' # No puedo solucionar el loopeo que se genera.
+  delete 'reservas/:id', to: 'reservations#destroy' # Hecho
 
-  get 'ventas', to: 'sells#index' # hECHO
+  get 'ventas', to: 'sells#index' # Hecho
 
-  get 'ventas/:id', to: 'sells#show'
+  get 'ventas/:id', to: 'sells#show' # Hecho
 
-  post 'ventas', to: 'sells#create'
+  post 'ventas', to: 'sells#create' # Hecho
 
 end
