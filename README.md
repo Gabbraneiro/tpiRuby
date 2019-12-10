@@ -152,7 +152,7 @@
   ```
 
   ```
-  # PUT /reservas:id/vender
+  # PUT /reservas/:id/vender
   curl --request PUT \
     --url http://10.10.10.10:3000/reservas/30/vender \
     --header 'accept: application/json' \
@@ -160,9 +160,27 @@
     --header 'content-type: application/json'
   ```
 
+  ```
+  # DELETE /reservas/;id
+  curl --request DELETE \
+    --url http://10.10.10.10:3000/reservas/10 \
+    --header 'accept: application/json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5NDIyOTZ9.BWFozM_Ja5EFfculCeDpmRaQbwM4ToaVtWK5vLYdyP8' \
+    --header 'content-type: application/json'
+    ```
+
 
     ```
     # GET /ventas
+    curl --request GET \
+      --url http://10.10.10.10:3000/ventas \
+      --header 'accept: application/json' \
+      --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5NDIyOTZ9.BWFozM_Ja5EFfculCeDpmRaQbwM4ToaVtWK5vLYdyP8' \
+      --header 'content-type: application/json'
+    ```
+
+    ```
+    # GET /ventas/:Id
     curl --request GET \
       --url http://10.10.10.10:3000/ventas \
       --header 'accept: application/json' \
