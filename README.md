@@ -27,6 +27,7 @@
 
 
 ### Comandos curl
+  A continuacion se provee un esqueleto base para cada endpoint. En algunos casos se deberan editar y poner datos validos
 
   ```
   # POST /sesiones
