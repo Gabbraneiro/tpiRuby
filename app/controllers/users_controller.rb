@@ -1,4 +1,4 @@
-class UsersController < PrivateController
+class UsersController < ApplicationController
 
   # POST /usuarios
   def create
