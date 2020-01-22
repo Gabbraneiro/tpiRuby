@@ -8,7 +8,7 @@ class SellsController < PrivateController
   # GET /ventas
   def index
     @sells = Sell.where(user: @current_user)
-    json_response(@sell)
+    json_response(@sells)
   end
 
   # GET /sells/1
@@ -32,7 +32,7 @@ class SellsController < PrivateController
 
     def validate_params
       errors = {}
-      validate_marketable_params(request_params, 'sell', errors)
+      validate_marketable_params(request_params, 'sell')
       json_response(nil, :bad_request, errors) unless errors.empty?
       return
     end

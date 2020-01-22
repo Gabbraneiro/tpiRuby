@@ -1,7 +1,6 @@
 class ProductsController < PrivateController
-  before_action :set_product, only: [:show, :add_item, :items]
+  before_action :set_product, only: [:show]
   before_action :check_q, only: [:index]
-  before_action :check_quantity, only: [:add_item]
 
   # GET /productos
   def index
@@ -9,19 +8,10 @@ class ProductsController < PrivateController
     json_response(@products)
   end
 
-  # GET /productos/{codigo}/items
-  def items
-    json_response(@product.items)
-  end
-
   # GET /productos/{codigo}
   def show
+    # test = {content_type: request.headers["Content-Type"], accept: request.headers["accept"]}
     json_response(@product)
-  end
-
-  # POST /productos/:codigo/items
-  def add_item
-    request_params[:quantity].to_i.times { Item.create({product: @product, status: :disponible})}
   end
 
   private
@@ -35,13 +25,5 @@ class ProductsController < PrivateController
     def check_q
       params[:q] = 'in_stock' if !(['scarce', 'all','in_stock'].include? params[:q])
     end
-
-    # En caso de que el body no tenga un numero valido mayor a 0, se retorna 400.
-    def check_quantity
-      if (request_params[:quantity].to_s.match(/^\d+$/).nil?)
-        json_response(nil, :bad_request, {cantidad: 'Debe enviar un número natural cuantitativo.'})
-      end
-      # Luego se hace un times do sobre Integer request_params[:quantity],
-      # que en caso de ser cero no se hará
-    end
+    
 end
