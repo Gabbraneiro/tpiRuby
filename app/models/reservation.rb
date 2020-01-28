@@ -2,18 +2,11 @@ class Reservation < ApplicationRecord
   belongs_to :user, foreign_key: "user_id"
   belongs_to :client, foreign_key: "client_id"
   has_one :sell
+  has_one :reservation_details
   validates :user, :client, presence: true
 
   def self.not_sold
     self.all.select{ |p| p.sell.nil? }
-  end
-
-  def client_denomination
-    client.denomination
-  end
-
-  def total_price
-    reservation_details.collect{ |rd| rd.product.price * rd.quantity}.inject :+
   end
 
   def add_reservation_details(reservation_details_params)

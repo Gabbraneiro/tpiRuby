@@ -4,23 +4,22 @@ class SellsController < PrivateController
 
   include Marketable
 
-
   # GET /ventas
   def index
     @sells = Sell.where(user: @current_user)
-    json_response(@sells)
+    render jsonapi: @sells
   end
 
-  # GET /sells/1
+  # GET /ventas/1
   def show
-    render json: @sell
+    render jsonapi: @sell
   end
 
-  # POST /sells
+  # POST /ventas
   def create
     @sell = Sell.create(request_params.except(:sell_details))
     @sell.add_sell_details(marketable_details_params(request_params, 'sell'))
-    json_response(@sell, :created)
+    render jsonapi: @sell, status: :created
   end
 
   private

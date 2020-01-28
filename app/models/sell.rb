@@ -2,15 +2,8 @@ class Sell < ApplicationRecord
   belongs_to :user, foreign_key: "user_id"
   belongs_to :client, foreign_key: "client_id"
   belongs_to :reservation, foreign_key: "reservation_id"
+  has_one :sell_details
   validates :user, :client, presence: true
-
-  def client_denomination
-    client.denomination
-  end
-
-  def total_price
-    sell_details.collect{ |rd| rd.product.price}.inject :+
-  end
 
   def self.create_from_reservation(reservation)
     params = Hash.new

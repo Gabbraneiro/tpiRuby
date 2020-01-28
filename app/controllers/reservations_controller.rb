@@ -8,25 +8,25 @@ class ReservationsController < PrivateController
   # GET /reservas
   def index
     @reservations = Reservation.not_sold
-    json_response(@reservations)
+    render jsonapi: @reservations
   end
 
   # GET /reservas/{id}
   def show
-    json_response(@reservation)
+    render jsonapi: @reservation
   end
 
   # POST /reservas
   def create
     @reservation = Reservation.create(request_params.except(:reservation_details))
     @reservation.add_reservation_details(marketable_details_params(request_params, 'reservation'))
-    json_response(@reservation, :created)
+    render jsonapi: @reservation, status: :created
   end
 
   # PUT /reservas/:id/vender
   def vender
     @reservation.update(sell: Sell.create_from_reservation(@reservation)) if !@reservation.sold?
-    json_response(@reservation.sell, :created)
+    render jsonapi: @reservation.sell
   end
 
   # DELETE /reservas/:id

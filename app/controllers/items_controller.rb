@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
     # GET /productos/{codigo}/items
     def index
-      json_response(@product.items)
+      render jsonapi: @product.items
     end
 
     # POST /productos/:codigo/items

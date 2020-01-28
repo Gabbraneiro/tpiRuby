@@ -1,6 +1,6 @@
-module ErrorSerializer
+module SerializableError
 
-  def ErrorSerializer.serialize(errors)
+  def SerializableError.serialize(errors)
     return if errors.nil?
 
     json = {}
