@@ -7,7 +7,7 @@ default: &default
 
 development:
   <<: *default
-  adapter: mysql
+  adapter: mysql2
   database: dev_tpi_ruby
 
 # test:
