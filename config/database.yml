@@ -1,5 +1,5 @@
 default: &default
-  adapter: <%= ENV['database_adapter'] %> 
+  adapter: <%= ENV['database_adapter'] %>
   encoding: utf8
   username: <%= ENV['database_user'] %>
   password: <%= ENV['database_password'] %>
@@ -8,12 +8,15 @@ default: &default
 
 development:
   <<: *default
+  adapter: mysql
   database: dev_tpi_ruby
 
-# test:
-#   <<: *default
-#   database: test_tpi_ruby
+test:
+  <<: *default
+  adapter: mysql
+  database: test_tpi_ruby
 
 production:
   <<: *default
+  adapter: postgresql
   database: tpi_ruby
