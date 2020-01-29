@@ -28,5 +28,6 @@
 
 /vendor
 /config/application.yml
+/test_test.txt
 
 # Ignore application configuration
