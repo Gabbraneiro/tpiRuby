@@ -32,16 +32,15 @@
   ```
   # POST /sesiones
   curl --request POST \
-    --url http://10.10.10.10:3000/sesiones \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer ' \
-    --header 'content-type: application/json' \
+    --url https://tpi-ruby-gabbraneiro.herokuapp.com/sesiones \
+    --header 'accept: application/vnd.api+json' \
+    --header 'content-type: application/vnd.api+json' \
     --data '{
     "data": {
       "type": "authentication",
       "attributes": {
-  			"u": "gabbraneiro",
-  			"p": "421954"
+  			"u": "se_aprueba",
+  			"p": "con_7"
   		}
     }
   }'
@@ -50,16 +49,16 @@
   ```
   # POST /usuarios
   curl --request POST \
-    --url http://10.10.10.10:3000/usuarios \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5MjczMTJ9.xoYbtS5Laeo5AzVyYUXeorB5ZAah1HYhu76AE_Ni7Zg' \
-    --header 'content-type: application/json' \
+    --url https://tpi-ruby-gabbraneiro.herokuapp.com/usuarios \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODAyMjA2NTh9.ZfazfUXjxDnvuv0xIAY8tqAJ-tW94_izWE-vUJOBmGk' \
+    --header 'content-type: application/vnd.api+json' \
     --data '{
-    "data": {
+  	  "data": {
       "type": "user",
       "attributes": {
-  			"username": "testing_ruby",
-  			"password": "123xxx"			
+  			"username": "se_aprueba",
+  			"password": "con_7"			
   		}
     }
   }'
@@ -68,37 +67,37 @@
   ```
   # GET /productos
   curl --request GET \
-    --url 'http://10.10.10.10:3000/productos?q=all' \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU2NTU4NTl9.YEvKsvWDDIwLWdEjkqYcr5XZq2ZCUdgOc5YGgz7T1AU' \
-    --header 'content-type: application/json'
+    --url https://tpi-ruby-gabbraneiro.herokuapp.com/productos \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODAxNjU2NjV9.fpUnOHn6QefKXt-9GkEKwqXSkX0n6erRDOHh1QDCbtQ' \
+    --header 'content-type: application/vnd.api+json'
   ```
 
   ```
   # GET /productos/:codigo
   curl --request GET \
-    --url http://10.10.10.10:3000/productos/ZED124386 \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU2NTU4NTl9.YEvKsvWDDIwLWdEjkqYcr5XZq2ZCUdgOc5YGgz7T1AU' \
-    --header 'content-type: application/json'
+    --url http://10.10.10.10:3000/productos/XFS344531 \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1Nzk3MzY1MzF9.VRFXTq8lvpeqe14_n798Fy7GH_pW2HSWhdV8J4DJKvc' \
+    --header 'content-type: application/vnd.api+json'
   ```
 
   ```
   # GET /productos/:codigo/items
   curl --request GET \
-    --url http://10.10.10.10:3000/productos/ZED124386/items \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU0ODI5MTJ9.zLmCS8UOXspblSqQBA4GdB9KdOSfbkxhGKoNwaiFsIA' \
-    --header 'content-type: application/json'
+    --url http://10.10.10.10:3000/productos/XFS344531/items \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1Nzk2NTQxNzl9.jc9U_7BhVNrX1dxf7DwC7Ue7tRTHDeCqxYcnCC89Gxo' \
+    --header 'content-type: application/vnd.api+json'
   ```
 
   ```
   # POST /productos/:codigo/items
   curl --request POST \
-    --url http://10.10.10.10:3000/productos/ZED124386/items \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU0ODI5MTJ9.zLmCS8UOXspblSqQBA4GdB9KdOSfbkxhGKoNwaiFsIA' \
-    --header 'content-type: application/json' \
+    --url http://10.10.10.10:3000/productos/XFS344531/items \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1Nzk2NTQxNzl9.jc9U_7BhVNrX1dxf7DwC7Ue7tRTHDeCqxYcnCC89Gxo' \
+    --header 'content-type: application/vnd.api+json' \
     --data '{
   	"data": {
   		"attributes": {
@@ -112,27 +111,27 @@
   # GET /reservas
   curl --request GET \
     --url http://10.10.10.10:3000/reservas \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5Mzg1NDZ9.7h9RhKrOtdunkb8dl8b7yy59fUxsBRCjlYK3eaV7pW8' \
-    --header 'content-type: application/json'
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1Nzk2NTY5MTJ9.sdO10LaLWLRPBGzulhzfdeRv7bf4iDp2vbb6zgDXYFc' \
+    --header 'content-type: application/vnd.api+json'
   ```
 
   ```
   # GET /reservas/:id
   curl --request GET \
-    --url http://10.10.10.10:3000/reservas/10 \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5Mzg1NDZ9.7h9RhKrOtdunkb8dl8b7yy59fUxsBRCjlYK3eaV7pW8' \
-    --header 'content-type: application/json'
+    --url http://10.10.10.10:3000/reservas/1 \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1Nzk1NTc0NTF9.oDBSkuxUzUttsDINVvPTrrULRp8fXa7HqgBRCGIBwwI' \
+    --header 'content-type: application/vnd.api+json'
   ```
 
   ```
   # POST /reservas
   curl --request POST \
     --url http://10.10.10.10:3000/reservas \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer  eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5NDA0MTB9.x44foR2x7WkxzZ5CrVvF7JCSxR5vS8WOf8-Yf3rC9-8' \
-    --header 'content-type: application/json' \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODAyMjU0MDd9.GOAalIIEU51GQUeS9Hxwa4uTYf0ZuVpgTYE-C-7km_A' \
+    --header 'content-type: application/vnd.api+json' \
     --data '{
   	"data": {
   		"type": "reservation",
@@ -142,7 +141,7 @@
   			"user_id": 2,
   			"reservation_details": [
   				{
-  					"product_id": 4,
+  					"product_id": 1,
   					"quantity": 2
   				}
   			]
@@ -154,19 +153,19 @@
   ```
   # PUT /reservas/:id/vender
   curl --request PUT \
-    --url http://10.10.10.10:3000/reservas/30/vender \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer  eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5NDA0MTB9.x44foR2x7WkxzZ5CrVvF7JCSxR5vS8WOf8-Yf3rC9-8' \
-    --header 'content-type: application/json'
+    --url http://10.10.10.10:3000/reservas/7/vender \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODAyMjU0MDd9.GOAalIIEU51GQUeS9Hxwa4uTYf0ZuVpgTYE-C-7km_A' \
+    --header 'content-type: application/vnd.api+json'
   ```
 
   ```
   # DELETE /reservas/;id
   curl --request DELETE \
-    --url http://10.10.10.10:3000/reservas/10 \
-    --header 'accept: application/json' \
-    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5NDIyOTZ9.BWFozM_Ja5EFfculCeDpmRaQbwM4ToaVtWK5vLYdyP8' \
-    --header 'content-type: application/json'
+    --url http://10.10.10.10:3000/reservas/1 \
+    --header 'accept: application/vnd.api+json' \
+    --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1Nzk2NTc0NTV9.zpJ9n7kLzQnvs4oVK-e7JytFpx5cI6gfANcOx2cxyxA' \
+    --header 'content-type: application/vnd.api+json'
     ```
 
 
@@ -174,38 +173,41 @@
     # GET /ventas
     curl --request GET \
       --url http://10.10.10.10:3000/ventas \
-      --header 'accept: application/json' \
-      --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5NDIyOTZ9.BWFozM_Ja5EFfculCeDpmRaQbwM4ToaVtWK5vLYdyP8' \
-      --header 'content-type: application/json'
+      --header 'accept: application/vnd.api+json' \
+      --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODAyMjU0MDd9.GOAalIIEU51GQUeS9Hxwa4uTYf0ZuVpgTYE-C-7km_A' \
+      --header 'content-type: application/vnd.api+json'
     ```
 
     ```
     # GET /ventas/:Id
     curl --request GET \
-      --url http://10.10.10.10:3000/ventas \
-      --header 'accept: application/json' \
-      --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5NDIyOTZ9.BWFozM_Ja5EFfculCeDpmRaQbwM4ToaVtWK5vLYdyP8' \
-      --header 'content-type: application/json'
+      --url http://10.10.10.10:3000/ventas/2 \
+      --header 'accept: application/vnd.api+json' \
+      --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODAyMjA2NTh9.ZfazfUXjxDnvuv0xIAY8tqAJ-tW94_izWE-vUJOBmGk' \
+      --header 'content-type: application/vnd.api+json'
     ```
 
     ```
     # POST /ventas
     curl --request POST \
       --url http://10.10.10.10:3000/ventas \
-      --header 'accept: application/json' \
-      --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1NzU5MjkwMDB9.oxaw3LAjMHfGuNrAxXb8lL8AwY-GF_tV5N0b86LOJTc' \
-      --header 'content-type: application/json' \
+      --header 'accept: application/vnd.api+json' \
+      --header 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODAyMjU0MDd9.GOAalIIEU51GQUeS9Hxwa4uTYf0ZuVpgTYE-C-7km_A' \
+      --header 'content-type: application/vnd.api+json' \
       --data '{
-      "data": {
-        "type": "sell",
-        "attributes": {
+    	"data": {
+    		"type": "sell",
+    		"attributes": {
     			"date": "2019-07-05",
     			"client_id": 1,
     			"user_id": 2,
     			"sell_details": [
-    				{"product_id":4, "quantity": 2}
+    				{
+    					"product_id":2,
+    					"quantity": 1
+    				}
     			]
     		}
-      }
+    	}
     }'
     ```
