@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_194256) do
     t.datetime "date", null: false
     t.bigint "client_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "reservation_id", null: false
+    t.bigint "reservation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_sells_on_client_id"

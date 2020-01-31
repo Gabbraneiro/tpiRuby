@@ -2,8 +2,16 @@ class Reservation < ApplicationRecord
   belongs_to :user, foreign_key: "user_id"
   belongs_to :client, foreign_key: "client_id"
   has_one :sell
-  has_one :reservation_details
-  validates :user, :client, presence: true
+  has_many :reservation_details
+  validates :date, :user, :client, presence: true
+
+  def self.create(hash)
+    Reservation.transaction do
+      r = super(hash.except(:reservation_details))
+      r.add_reservation_details(hash[:reservation_details])
+      r
+    end
+  end
 
   def self.not_sold
     self.all.select{ |p| p.sell.nil? }
@@ -22,18 +30,5 @@ class Reservation < ApplicationRecord
   def sold?
     !sell.nil?
   end
-
-  def reservation_details
-    ReservationDetail.where(reservation:self)
-  end
-
-  # def destroy
-  #   ItemReservation.where(reservation: itself).each do |ir|
-  #     ir.item.disponible!
-  #     # ir.destroy
-  #   end
-  #   # ReservationDetail.where(reservation: itself).destroy_all
-  #   super.destroy
-  # end
 
 end

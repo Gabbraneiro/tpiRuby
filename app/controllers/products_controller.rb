@@ -15,8 +15,7 @@ class ProductsController < PrivateController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find_by_code(params[:id])
-      json_response(nil, :not_found, errors = {codigo: 'Código de producto no encontrado'}) if @product.nil?
+      @product = Product.find_by!({code: params[:id]})
     end
 
     # En caso de que no se especifique un parametro "q" válido (['scarce', 'all','in_stock']) se setea "in_stock"

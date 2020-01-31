@@ -7,11 +7,4 @@ class Item < ApplicationRecord
     product.price
   end
 
-  def item_reservation
-
-  end
-
-  def item_sell
-    
-  end
 end

@@ -4,7 +4,7 @@ class CreateSells < ActiveRecord::Migration[6.0]
       t.datetime :date, null: false
       t.belongs_to :client, null: false
       t.belongs_to :user, null: false
-      t.belongs_to :reservation, null: false
+      t.belongs_to :reservation, null: true
 
       t.timestamps
     end
