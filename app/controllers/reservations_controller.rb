@@ -12,7 +12,7 @@ class ReservationsController < PrivateController
 
   # GET /reservas/{id}
   def show
-    render jsonapi: @reservation
+    render jsonapi: @reservation, include: params[:include]
   end
 
   # POST /reservas

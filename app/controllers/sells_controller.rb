@@ -11,7 +11,7 @@ class SellsController < PrivateController
 
   # GET /ventas/1
   def show
-    render jsonapi: @sell
+    render jsonapi: @sell, include: params[:include]
   end
 
   # POST /ventas

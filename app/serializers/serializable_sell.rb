@@ -1,6 +1,12 @@
 class SerializableSell < JSONAPI::Serializable::Resource
     type 'sells'
 
+    has_many :sell_details do
+      data do
+        @object.sell_details
+      end
+    end
+
     attribute :date
 
     attribute :client_denomination do
