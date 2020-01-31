@@ -1,4 +1,4 @@
-
+# https://gist.github.com/jonbarlo/17f911ac49ed9eea55febe544916e210
 class AuthenticateUser
   prepend SimpleCommand
 
