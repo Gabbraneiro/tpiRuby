@@ -8,18 +8,14 @@ class AuthenticateUser
   end
 
   def call
-    JsonWebToken.encode(user_id: user.id) if user
-  end
-
-  private
-
-  attr_accessor :username, :password
-
-  def user
-    user = User.find_by_username(username)
-    return user if user && user.authenticate(password)
-
-    errors.add :user_authentication, 'Credenciales invalidas'
-    nil
+    user = User.find_by_username(@username)
+    if user && user.authenticate(@password)
+      user.temp_token = JsonWebToken.encode(user_id: user.id)
+      user.save
+      user.temp_token
+    else
+      errors.add :user_authentication, 'Credenciales invalidas'
+      nil
+    end
   end
 end
